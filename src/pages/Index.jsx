@@ -1,9 +1,11 @@
-import { Box, Container, Flex, Heading, Link, Text, VStack, HStack, Divider, Stack, Image } from "@chakra-ui/react";
+import { Box, Container, Flex, Heading, Link, Text, VStack, HStack, Divider, Stack, Image, Button } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { FaTwitter, FaFacebook, FaInstagram } from "react-icons/fa";
+import { useColorMode } from "@chakra-ui/react";
 
 const Index = () => {
   const [posts, setPosts] = useState([]);
+  const { colorMode, toggleColorMode } = useColorMode();
 
   useEffect(() => {
     const storedPosts = JSON.parse(localStorage.getItem("posts")) || [];
@@ -21,6 +23,9 @@ const Index = () => {
           <Link href="/blog" color="white">Blog</Link>
           <Link href="/contact" color="white">Contact</Link>
           <Link href="/add-post" color="white">Add Post</Link>
+          <Button onClick={toggleColorMode}>
+            {colorMode === "light" ? "Dark Mode" : "Light Mode"}
+          </Button>
         </HStack>
       </Flex>
 
